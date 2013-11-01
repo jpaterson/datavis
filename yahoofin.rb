@@ -2,13 +2,15 @@
 require 'nokogiri'
 require 'open-uri'
 
+<link type="text/css" rel="stylesheet" href="newsstylesheet.css"/>
+
 yahoostocknews = "http://ca.finance.yahoo.com/news/category-stocks/"
 
 news = Nokogiri::HTML(open(yahoostocknews))
 
-page_contents = news.css('.yom-top-story .bd .list-titlethumbsummary li')
+page_contents = news.css('.yom-top-story .bd .list-titlethumbsummary li .txt a')
 
-File.open("yahoonews", "w") do |f|  
+File.open("yahoonews.html", "w") do |f|  
 	f.puts("<!DOCTYPE HTML>")
 	f.puts("<html>")
 	f.puts("<head>")
